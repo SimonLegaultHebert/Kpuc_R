@@ -1,0 +1,61 @@
+<app-title [title]="title"></app-title>
+
+<legend>Individual entry</legend><br><br>
+
+<form role="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+        <label class="col-sm-1 col-sm-offset-5 " for="chromosome">Chromosome</label>
+        <select class="col-sm-1  form-select" id="chromosome" formControlName="chromosome">
+            <option value="chr1">chr1</option>
+            <option value="chr2">chr2</option>
+            <option value="chr3">chr3</option>
+            <option value="chr4">chr4</option>
+            <option value="chr5">chr5</option>
+            <option value="chr6">chr6</option>
+            <option value="chr7">chr7</option>
+            <option value="chr8">chr8</option>
+            <option value="chr9">chr9</option>
+            <option value="chr10">chr10</option>
+            <option value="chr11">chr11</option>
+            <option value="chr12">chr12</option>
+            <option value="chr13">chr13</option>
+            <option value="chr14">chr14</option>
+            <option value="chr15">chr15</option>
+            <option value="chr16">chr16</option>
+            <option value="chr17">chr17</option>
+            <option value="chr18">chr18</option>
+            <option value="chr19">chr19</option>
+            <option value="chr20">chr20</option>
+            <option value="chr21">chr21</option>
+            <option value="chr22">chr22</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-1 col-sm-offset-5" for="startPosition">Start position (hg19)</label>
+        <input class="col-sm-2 text-input" id="startPosition" type="text" formControlName="startPosition" placeholder="format example: 123456">
+        <div *ngIf="form.controls.startPosition.invalid && (form.controls.startPosition.dirty || form.controls.startPosition.touched)"
+            class="alert alert-danger col-sm-offset-6 col-sm-1">Enter a valid start position.</div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-1 col-sm-offset-5" for="stopPosition">Stop position (hg19)</label>
+        <input class="col-sm-2  text-input" id="stopPosition" type="text" formControlName="stopPosition" placeholder="format example: 3456789">
+        <div *ngIf="form.controls.stopPosition.invalid && (form.controls.stopPosition.dirty || form.controls.stopPosition.touched)"
+            class="alert alert-danger col-sm-offset-6 col-sm-1">Enter a valid stop position.</div>
+    </div>
+
+    <div class="row">
+        <label class="col-sm-1 col-sm-offset-5 " for="type">Type</label>
+        <select class="col-sm-1  form-select" id="type" formControlName="type">
+            <option value="DEL">DEL</option>
+            <option value="DUP">DUP</option>
+        </select>
+    </div><br>
+
+    <div class="row">
+        <button class="col-sm-2 col-sm-offset-5" type="submit">Run Predictions</button>
+    </div>
+
+</form>

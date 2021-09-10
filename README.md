@@ -14,3 +14,11 @@ cd node-r
 npm install
 node index.js
 ```
+
+## Helpers
+
+```sh
+cd node-r
+cd helpers
+importer la librairie dans postman
+```
