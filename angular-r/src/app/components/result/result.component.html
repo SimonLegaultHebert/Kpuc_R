@@ -2,14 +2,97 @@
     <app-title [title]="title"></app-title>
 
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
-            <pre>{{results[0] | json}}</pre>
+        <div class="col-sm-offset-3 col-sm-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>CHR</th>
+                        <th>START</th>
+                        <th>STOP</th>
+                        <th>TYPE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{results.CHR}}</td>
+                        <td>{{results.START}}</td>
+                        <td>{{results.STOP}}</td>
+                        <td>{{results.TYPE}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    
+
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <h4>Predicted values</h4>
+
+            <div>Estimated loss of Non-Verbal Intelligence Quotient (NVIQ)</div>
+            <div>NVIQ = {{results.NVIQ}} points</div>
+            <div>CI({{results.NVIQ_CIlwr}} , {{results.NVIQ_CIupr}})</div><br>
+
+            <div>Estimated odds ratio for autism (OR ASD)</div>
+            <div>OR ASD = {{results.ORASD}}</div>
+            <div>95%CI({{results.ORASD_lwr}} , {{results.ORASD_upr}})</div><br>
+
+            <div>Estimated gain of raw score of Social Responsiveness Scale (SRS)</div>
+            <div>SRS = +{{results.SRS}} points</div>
+            <div>95%CI({{results.SRS_CIlwr}} , {{results.SRS_CIupr}})</div><br>
+
+            <div>Estimated probability of being de novo (Pdn)</div>
+            <div>Pdn = {{results.PdN | percent}}</div>
+            <div>95%CI({{results.PdN_CIlwr}} , {{results.PdN_CIupr}}) - <i>Ajouter percent + trim</i></div><br> <!--percent + trim %-->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <h4>Total constraint score burden</h4>
+            <div>Sum of pLI scores of coding gene with all isoforms fully encompassed in CNV <a href="https://www.nature.com/articles/nature19057" target="_blank">(ExAC v1.0)</a></div>
+            <div>{{results.sum_pLI_complete | number : '1.2-2'}}</div><br>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <p><i>TODO/ Trouver comment déterminer le id=red et créer un pipe pour le format des nombres</i></p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Genes</th>
+                        <th>pLI</th>
+                        <th>o/e</th>
+                        <th>LOEUF</th>
+                        <th>ND genes category</th>
+                        <th>SFARI genes category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let gene of genes"> <!-- Ajuster le pipe pour les exposants-->
+                        <td>{{gene.name}}</td>
+                        <td>{{gene.pli}}</td>
+                        <td>{{gene.oe}}</td>
+                        <td>{{gene.loeuf}}</td>
+                        <td>{{gene.ndGenesCategory}}</td>
+                        <td>{{gene.sfariGenesCategory}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <pre>{{results | json}}</pre>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
             <button type="button" class="btn btn-primary" (click)="downloadFile()">Download your results</button>
         </div>
     </div>
 </div>
+
+

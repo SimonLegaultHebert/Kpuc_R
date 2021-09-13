@@ -14,6 +14,7 @@ export class ResultComponent implements OnInit {
 
   title: string;
   results: any;
+  genes: any[] | undefined;
   currentEntry: Entry = new Entry();
 
   constructor(
@@ -32,6 +33,8 @@ export class ResultComponent implements OnInit {
   private getResult() {
     this.apiService.getResults(this.currentEntry).subscribe((response: any) => {
       this.results = response;
+      this.results = this.results[0];
+      this.genes = this.createGenesList(this.results);
     },
       (err: any) => {
         console.log(err);
@@ -39,6 +42,30 @@ export class ResultComponent implements OnInit {
       () => {
 
       });
+  }
+
+  private createGenesList(results: any) {
+    const genesList = [];
+    const genesNameList = results.Genes.split(',');
+    const pliList = results.pLI.split(',');
+    const loeufList = results.LOEUF.split(',');
+    const oeList = results.OE.split(',');
+    const ndGenesCategoryList = results.DNMref.split(';');
+    const sfariGenesCategoryList = results.SFARIref.split(',');
+
+    for (let i = 0; i < genesNameList.length; ++i) {
+      let gene = {
+        name: genesNameList[i],
+        pli: pliList[i].replace('NA', '0.00e+0'),
+        loeuf: loeufList[i].replace('NA', '0.00'),
+        oe: oeList[i].replace('NA', '0.00e+0'),
+        ndGenesCategory: ndGenesCategoryList[i],
+        sfariGenesCategory: sfariGenesCategoryList[i]
+      }
+      genesList.push(gene);
+    }
+
+    return genesList;
   }
 
   downloadFile() {

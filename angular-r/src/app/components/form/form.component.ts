@@ -33,8 +33,8 @@ export class FormComponent implements OnInit {
   createForm(): FormGroup {
     return this.form = this.formBuilder.group({
       chromosome: ['chr1', [Validators.required]],
-      startPosition: ['123', [Validators.required]],
-      stopPosition: ['123344', [Validators.required]],
+      startPosition: ['1234', [Validators.required]],
+      stopPosition: ['1233445', [Validators.required]],
       type: ['DEL', [Validators.required]]
     })
   }
