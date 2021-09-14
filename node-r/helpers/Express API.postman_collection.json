@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a5db77f0-be0a-4b1b-9724-ee1348642cf1",
+		"_postman_id": "c8a754b5-68de-4055-9d63-d561cbc77762",
 		"name": "Express API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -19,17 +19,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"chromosome\": \"ch1\",\r\n\t\"start\": 1234,\r\n\t\"stop\": 34567,\r\n\t\"type\": \"DEL\"\r\n}"
+					"raw": "{\r\n\t\"chromosome\": \"ch1\",\r\n\t\"startPosition\": 1234,\r\n\t\"stopPosition\": 34567,\r\n\t\"type\": \"DEL\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8082/call-r",
+					"raw": "http://localhost:8080/predictions",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8080",
 					"path": [
-						"call-r"
+						"predictions"
 					]
 				}
 			},
@@ -40,7 +40,23 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:8080/download?fileName=chr1_123_123344_DEL.tsv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"download"
+					],
+					"query": [
+						{
+							"key": "fileName",
+							"value": "chr1_123_123344_DEL.tsv"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -50,12 +66,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/results?fileName=chr1_123_123344_DEL.tsv",
+					"raw": "http://localhost:8080/results?fileName=chr1_123_123344_DEL.tsv",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8080",
 					"path": [
 						"results"
 					],
@@ -65,6 +81,22 @@
 							"value": "chr1_123_123344_DEL.tsv"
 						}
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080"
 				}
 			},
 			"response": []
