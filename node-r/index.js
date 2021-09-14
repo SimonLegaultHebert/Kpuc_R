@@ -11,7 +11,10 @@ app.use(cors());
 const FILE_DIR = 'data/';
 const SCRIPT_R = 'run-predictions.R';
 
-// -------------------------------------------- routes
+app.get('/', (req, res) => {
+    res.sendFile('index.html',{root:__dirname + '\\dist\\angular-r'})
+});
+
 app.get('/download', function (req, res) {
     var fileName = req.query.fileName;
     const file = `${FILE_DIR}/${fileName}`;
@@ -55,7 +58,7 @@ function evaluatePredictionsRequestBody(requestBody) {
 }
 
 // -------------------------------------------- Server Start
-const server = app.listen(8082, function () {
-    const port = server.address().port;
-    console.log(`App listening at http://localhost:${port}`);
+const port = process.env.port || 8080;
+app.listen(port, () => {
+    console.log('App listening at http://localhost:' + port);
 });

@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  urlPredictions: "http://localhost:8082/predictions",
-  urlResults: "http://localhost:8082/results",
-  urlDownload: "http://localhost:8082/download"
+  urlPredictions: "http://localhost:8080/predictions",
+  urlResults: "http://localhost:8080/results",
+  urlDownload: "http://localhost:8080/download"
 };
 
 /*
