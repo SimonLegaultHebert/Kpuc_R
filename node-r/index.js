@@ -60,5 +60,5 @@ function evaluatePredictionsRequestBody(requestBody) {
 // -------------------------------------------- Server Start
 const port = process.env.port || 8080;
 app.listen(port, () => {
-    console.log('App listening at http://localhost:' + port);
+    console.log('App listening at http://127.0.0.1:' + port);
 });
